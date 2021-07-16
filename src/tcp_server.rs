@@ -1,8 +1,6 @@
 
-use std::io::Read;
-use std::io::Write;
-use std::net::TcpListener;
-use std::net::TcpStream;
+use std::io::{Read, Write};
+use std::net::{TcpListener, TcpStream};
 use std::str;
 use std::thread;
 
@@ -35,7 +33,7 @@ fn handler(mut stream: TcpStream) -> Result<(), failure::Error> {
             debug!("Connection closed.");
             return Ok(());
         }
-        debug!("{}", str::from_utf8(&buffer[..nbytes])?);
-        stream.write_all(&buffer[..nbytes]);
+        print!("{}", str::from_utf8(&buffer[..nbytes])?);
+        stream.write_all(&buffer[..nbytes])?;
     }
 }
